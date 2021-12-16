@@ -5,6 +5,11 @@ import fr.cpi.deplacement.repository.DeplacementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +23,22 @@ public class DeplacementService {
         return repository.findAll();
     }
 
+    public List<DeplacementModel> findNext() {
+
+        // Date courante
+        Date currentDate = Date.from(Instant.now());
+        // On récupère tous les déplacements
+        List<DeplacementModel> deplacements = repository.findAll();
+
+        List<DeplacementModel> goodDeplacements = new ArrayList<>();
+
+        for (DeplacementModel deplacement : deplacements) {
+            Date testedDate = deplacement.getDateDeplacement();
+
+            if (testedDate.after(currentDate)) goodDeplacements.add(deplacement);
+        }
+        return goodDeplacements;
+    }
     public Optional<DeplacementModel> findOne(String id) { return repository.findById(id); }
 
     //ajout

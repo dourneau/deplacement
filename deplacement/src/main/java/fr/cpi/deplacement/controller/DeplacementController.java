@@ -24,10 +24,17 @@ public class DeplacementController {
         return service.findAll();
     }
 
+    @GetMapping("/next")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DeplacementModel> findNext() {
+        return service.findNext();
+    }
+
     @GetMapping("/{id}")
     public Optional<DeplacementModel> findById(@PathVariable String id){
         return service.findOne(id);
     }
+
 
     @PostMapping()
     public DeplacementModel create(@RequestBody DeplacementModel deplacement ) {
