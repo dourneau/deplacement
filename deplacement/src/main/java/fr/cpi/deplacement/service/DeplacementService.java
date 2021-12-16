@@ -18,7 +18,7 @@ public class DeplacementService {
         return repository.findAll();
     }
 
-    public Optional<DeplacementModel> findById(String id) { return repository.findById(id); }
+    public Optional<DeplacementModel> findOne(String id) { return repository.findById(id); }
 
     //ajout
     public DeplacementModel save(DeplacementModel deplacement){

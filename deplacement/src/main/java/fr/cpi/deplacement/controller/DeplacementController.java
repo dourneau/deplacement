@@ -26,7 +26,7 @@ public class DeplacementController {
 
     @GetMapping("/{id}")
     public Optional<DeplacementModel> findById(@PathVariable String id){
-        return service.findById(id);
+        return service.findOne(id);
     }
 
     @PostMapping()
