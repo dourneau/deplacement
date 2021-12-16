@@ -1,0 +1,16 @@
+spring:
+  data:
+    mongodb:
+      database: demoJee
+      host: localhost
+      port: 27017
+
+server:
+  port: 8082
+
+variable:
+  uri: http://localhost:8080
+
+environnement:
+  uri: http://localhost:8081
+
