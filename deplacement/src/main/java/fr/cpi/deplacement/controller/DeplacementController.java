@@ -35,11 +35,15 @@ public class DeplacementController {
         return service.findOne(id);
     }
 
-    @GetMapping("/patient/next/{idPatient}")
+    @GetMapping("/next/patient/{idPatient}")
     public List<DeplacementModel> findByPatient(@PathVariable String idPatient){
         return service.findByPatient(idPatient);
     }
 
+    @GetMapping("/next/infirmier/{idInfirmier}")
+    public List<DeplacementModel> findByInfirmier(@PathVariable String idInfirmier){
+        return service.findByPatient(idInfirmier);
+    }
 
     @PostMapping()
     public DeplacementModel create(@RequestBody DeplacementModel deplacement ) {

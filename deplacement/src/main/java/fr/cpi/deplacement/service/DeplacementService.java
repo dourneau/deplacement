@@ -59,6 +59,25 @@ public class DeplacementService {
     }
 
 
+    // Méthode permettant d’afficher tous les déplacements à venir d’un infirmier
+    public List<DeplacementModel> findByInfirmier(String idInfirmier) {
+        // Date courante
+        Date currentDate = Date.from(Instant.now());
+        // On récupère tous les déplacements
+        List<DeplacementModel> deplacements = repository.findAll();
+        // la liste des déplacements à retourner est instanciée
+        List<DeplacementModel> goodDeplacements = new ArrayList<>();
+        // Boucle sur tous les déplacements
+        for (DeplacementModel deplacement : deplacements) {
+            String testedDeplacement = deplacement.getIdPatient();
+            if (testedDeplacement.equals(idInfirmier)) {
+                Date testedDate = deplacement.getDateDeplacement();
+                if (testedDate.after(currentDate)) goodDeplacements.add(deplacement);
+            }
+        }
+        return goodDeplacements;
+    }
+
     public Optional<DeplacementModel> findOne(String id) { return repository.findById(id); }
 
     //ajout
