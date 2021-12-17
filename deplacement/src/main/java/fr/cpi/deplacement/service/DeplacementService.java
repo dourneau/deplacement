@@ -49,8 +49,8 @@ public class DeplacementService {
         List<DeplacementModel> goodDeplacements = new ArrayList<>();
         // Boucle sur tous les déplacements
         for (DeplacementModel deplacement : deplacements) {
-            String testedDeplacement = deplacement.getIdPatient();
-            if (testedDeplacement.equals(idPatient)) {
+            String testedIdPatient = deplacement.getIdPatient();
+            if (testedIdPatient.equals(idPatient)) {
                 Date testedDate = deplacement.getDateDeplacement();
                 if (testedDate.after(currentDate)) goodDeplacements.add(deplacement);
             }
@@ -69,9 +69,9 @@ public class DeplacementService {
         List<DeplacementModel> goodDeplacements = new ArrayList<>();
         // Boucle sur tous les déplacements
         for (DeplacementModel deplacement : deplacements) {
-            String testedDeplacement = deplacement.getIdPatient();
-            if (testedDeplacement.equals(idInfirmier)) {
-                Date testedDate = deplacement.getDateDeplacement();
+            String testedIdInfirimier = deplacement.getIdInfirmier();
+            Date testedDate = deplacement.getDateDeplacement();
+            if (testedIdInfirimier.equals(idInfirmier)) {
                 if (testedDate.after(currentDate)) goodDeplacements.add(deplacement);
             }
         }

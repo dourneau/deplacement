@@ -42,7 +42,7 @@ public class DeplacementController {
 
     @GetMapping("/next/infirmier/{idInfirmier}")
     public List<DeplacementModel> findByInfirmier(@PathVariable String idInfirmier){
-        return service.findByPatient(idInfirmier);
+        return service.findByInfirmier(idInfirmier);
     }
 
     @PostMapping()
