@@ -23,15 +23,15 @@ public class DeplacementService {
         return repository.findAll();
     }
 
+    //Méthode permettant d’afficher uniquement les déplacements à venir
     public List<DeplacementModel> findNext() {
-
         // Date courante
         Date currentDate = Date.from(Instant.now());
         // On récupère tous les déplacements
         List<DeplacementModel> deplacements = repository.findAll();
-
+        // la liste des déplacements à retourner est instanciée
         List<DeplacementModel> goodDeplacements = new ArrayList<>();
-
+        // Boucle sur tous les déplacements
         for (DeplacementModel deplacement : deplacements) {
             Date testedDate = deplacement.getDateDeplacement();
 
@@ -39,6 +39,26 @@ public class DeplacementService {
         }
         return goodDeplacements;
     }
+    // Méthode permettant d’afficher tous les déplacements à venir d’un patient
+    public List<DeplacementModel> findByPatient(String idPatient) {
+        // Date courante
+        Date currentDate = Date.from(Instant.now());
+        // On récupère tous les déplacements
+        List<DeplacementModel> deplacements = repository.findAll();
+        // la liste des déplacements à retourner est instanciée
+        List<DeplacementModel> goodDeplacements = new ArrayList<>();
+        // Boucle sur tous les déplacements
+        for (DeplacementModel deplacement : deplacements) {
+            String testedDeplacement = deplacement.getIdPatient();
+            if (testedDeplacement.equals(idPatient)) {
+                Date testedDate = deplacement.getDateDeplacement();
+                if (testedDate.after(currentDate)) goodDeplacements.add(deplacement);
+            }
+        }
+        return goodDeplacements;
+    }
+
+
     public Optional<DeplacementModel> findOne(String id) { return repository.findById(id); }
 
     //ajout
